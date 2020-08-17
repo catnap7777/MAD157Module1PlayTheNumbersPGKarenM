@@ -95,7 +95,6 @@ variable2 = 348
 
 for (item, index) in array1.enumerated() {
     if item == 71 || item == 82 {
-        print("/nfound it")
         array1.remove(at: index)
     }
 }
