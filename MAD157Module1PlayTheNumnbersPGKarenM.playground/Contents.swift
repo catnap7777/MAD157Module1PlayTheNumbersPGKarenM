@@ -27,18 +27,6 @@ array1.append(constant3)
 array1.append(constant4)
 array1.append(constant5)
 
-print("*** Array Unsorted ***\n")
-for item in array1 {
-    print("---> \(item)")
-}
-
-array1.sort(){ $0 < $1 }
-
-print("\n*** Array Sorted ***\n")
-for item in array1 {
-    print("***> \(item)")
-}
-
 var dictionary1: [String:Int] = [:]
 
 dictionary1["var1  "] = variable1
@@ -52,22 +40,77 @@ dictionary1["const3"] = constant3
 dictionary1["const4"] = constant4
 dictionary1["const5"] = constant5
 
-print("\n*** Dictionary Unsorted\n")
-for (k, v) in dictionary1 {
-    print("key: \(k) \t\t value: \(v)")
+//.....................................................................................
+func printSortArray() {
+    
+    print("\n*** Array Unsorted ***\n")
+    for item in array1 {
+        print("---> \(item)")
+    }
+    
+    array1.sort(){ $0 < $1 }
+    
+    print("\n*** Array Sorted ***\n")
+    for item in array1 {
+        print("***> \(item)")
+    }
+    
+}
+//.....................................................................................
+func printSortDictionary() {
+    
+    print("\n*** Dictionary Unsorted\n")
+    for (k, v) in dictionary1 {
+        print("key: \(k) \t\t value: \(v)")
+    }
+    
+    let sortedDictionary1 = dictionary1.sorted(by: {$0.value < $1.value})
+    
+    print("\n*** Dictionary Sorted by Value\n")
+    for (k, v) in sortedDictionary1 {
+        print("key: \(k) \t\t value: \(v)")
+    }
+    
+}
+//.....................................................................................
+func printMaxMin() {
+    
+    let maxValue = dictionary1.map { $1 }.max()!
+    print("\nMaximum value in Dictionary = \(maxValue)")
+    
+    let minValue = dictionary1.map { $1 }.min()!
+    print("\nMinimum value in Dictionary = \(minValue)")
+    
 }
 
-//et sortedMovieDictionary = movieDictionary.sorted(by: {$0.value.movieName < $1.value.movieName})
-let sortedDictionary1 = dictionary1.sorted(by: {$0.value < $1.value})
+//.....................................................................................
 
-print("\n*** Dictionary Sorted by Value\n")
-for (k, v) in sortedDictionary1 {
-    print("key: \(k) \t\t value: \(v)")
+printSortArray()
+printSortDictionary()
+printMaxMin()
+
+//***** Changing array values
+variable1 = 999
+variable2 = 348
+
+for (item, index) in array1.enumerated() {
+    if item == 71 || item == 82 {
+        print("/nfound it")
+        array1.remove(at: index)
+    }
 }
+    
+array1.append(variable1)
+array1.append(variable2)
 
-let maxValue = sortedDictionary1.map { $1 }.max()!
-print("\nMaximum value in Dictionary = \(maxValue)")
+//***** Changing dictionary values
+dictionary1["var1  "] = 999
+dictionary1["var2  "] = 348
 
-let minValue = sortedDictionary1.map { $1 }.min()!
-print("\nMinimum value in Dictionary = \(minValue)")
-
+//***** Print everything out again with new values
+print("\n................................................................................")
+print("........................ Printing out with new values now ......................")
+print("................................................................................\n")
+printSortArray()
+printSortDictionary()
+printMaxMin()
