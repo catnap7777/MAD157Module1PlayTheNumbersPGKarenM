@@ -1,5 +1,6 @@
 //import Cocoa
 
+
 var str = "Hello, playground"
 
 var variable1 = 71
